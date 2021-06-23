@@ -30,6 +30,12 @@ class Reservation
     private $Client ;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Voyage",inversedBy="Voyage::idVoyage")
+     * @ORM\JoinColumn(name="Voyage",referencedColumnName="idVoyage")
+     */
+    private $Voyage ;
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
     private $StatutReservation;

@@ -14,6 +14,8 @@ class Voyage
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @ORM\OneToMany(targetEntity="Reservation",mappedBy="Voyage")
+
      */
     private $idVoyage;
 
