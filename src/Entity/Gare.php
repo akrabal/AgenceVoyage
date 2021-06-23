@@ -46,4 +46,16 @@ class Gare
 
         return $this;
     }
+
+    public function getVille() :?Ville
+    {
+      return  $this->Ville;
+    }
+
+    public function setVille(ville $ville)
+    {
+       $this->Ville= $ville;
+    }
+
+    
 }

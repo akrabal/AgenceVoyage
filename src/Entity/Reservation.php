@@ -80,4 +80,13 @@ class Reservation
     {
        $this->Client= $Client ;
     }
+    public function getVoyage() :?Voyage
+    {
+      return $this->Voyage; 
+    }
+
+    public function setVoyage(Voyage $voyage)
+    {
+         $this->Voyage= $voyage ;
+    }
 }

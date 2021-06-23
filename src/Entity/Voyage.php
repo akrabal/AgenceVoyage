@@ -97,7 +97,26 @@ class Voyage
 
         return $this;
     }
+    public function getGareDepart()
+    {
+      return $this->GareDepart;
+    }
 
+    public function setGareDepart(Gare $gareDepart)
+    {
+      $this->GareDepart=$gareDepart;
+    }
+
+    
+    public function getGareArriver()
+    {
+      return $this->GareArriver;
+    }
+
+    public function setGareArriver(Gare $GareArriver)
+    {
+      $this->GareArriver=$GareArriver;
+    }
    
 
     
