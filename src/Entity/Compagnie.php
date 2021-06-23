@@ -14,10 +14,11 @@ class Compagnie
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @ORM\OneToMany(targetEntity="Voyage",mappedBy="Compagnie")
      */
     private $idCompagnie;
 
-   
+    
 
     /**
      * @ORM\Column(type="string", length=255)

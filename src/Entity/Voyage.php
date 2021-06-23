@@ -33,7 +33,12 @@ class Voyage
      * @ORM\Column(type="string", length=255)
      */
     private $statutVoyage;
-
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Compagnie",inversedBy="idCompagnie")
+     * @ORM\JoinColumn(name="Compagnie",referencedColumnName="idCompagnie")
+     */
+    private $Compagnie ;
     
 
 
