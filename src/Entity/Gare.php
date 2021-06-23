@@ -21,6 +21,14 @@ class Gare
      * @ORM\Column(type="string", length=255)
      */
     private $localisationGare;
+    
+    /**
+     * /**
+     * @ORM\OneToOne(targetEntity="Ville")
+     * @ORM\JoinColumn(name="Ville",referencedColumnName="idVille")
+     *
+     */
+    private $Ville ;
 
     public function getId(): ?int
     {
