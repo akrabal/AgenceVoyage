@@ -14,6 +14,7 @@ class Client
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @ORM\OneToMany(targetEntity="Reservation",mappedBy="Client")
      */
     private $idClient;
 

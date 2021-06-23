@@ -21,6 +21,13 @@ class Reservation
      * @ORM\Column(type="datetime")
      */
     private $dateReservation;
+    
+    /**
+     * 
+     * @ORM\ManyToOne(targetEntity="Client",inversedBy="Client::idClient")
+     * @ORM\JoinColumn(name="Client",referencedColumnName="idClient")
+     */
+    private $Client ;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -54,5 +61,15 @@ class Reservation
         $this->StatutReservation = $StatutReservation;
 
         return $this;
+    }
+
+    public function getClient():?Client
+    {
+       return  $this->Client  ;
+    }
+
+    public function setClient( Client $Client)
+    {
+       $this->Client= $Client ;
     }
 }
