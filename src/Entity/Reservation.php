@@ -23,13 +23,15 @@ class Reservation
     private $dateReservation;
     
     /**
+     *
      * 
      * @ORM\ManyToOne(targetEntity="Client",inversedBy="Client::idClient")
      * @ORM\JoinColumn(name="Client",referencedColumnName="idClient")
      */
-    private $Client ;
+    private  $Client ;
 
     /**
+     * 
      * @ORM\ManyToOne(targetEntity="Voyage",inversedBy="Voyage::idVoyage")
      * @ORM\JoinColumn(name="Voyage",referencedColumnName="idVoyage")
      */

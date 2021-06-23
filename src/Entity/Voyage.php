@@ -35,10 +35,25 @@ class Voyage
     private $statutVoyage;
     
     /**
+     * 
      * @ORM\ManyToOne(targetEntity="Compagnie",inversedBy="idCompagnie")
      * @ORM\JoinColumn(name="Compagnie",referencedColumnName="idCompagnie")
      */
     private $Compagnie ;
+
+    /**
+     * 
+     * @ORM\OneToOne(targetEntity="Gare")
+     * @ORM\JoinColumn(name="GareDepart",referencedColumnName="idGare")
+     */
+    private $GareDepart ;
+
+     /**
+     * 
+     * @ORM\OneToOne(targetEntity="Gare")
+     * @ORM\JoinColumn(name="GareArriver",referencedColumnName="idGare")
+     */
+    private $GareArriver ;
     
 
 
