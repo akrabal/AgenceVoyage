@@ -11,9 +11,10 @@ use Doctrine\ORM\Mapping as ORM;
 class Reservation
 {
     /**
+     * 
      * @ORM\Id
      * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer",name="idReservation")
      */
     private $idReservation;
 
@@ -23,16 +24,14 @@ class Reservation
     private $dateReservation;
     
     /**
-     *
-     * 
-     * @ORM\ManyToOne(targetEntity="Client",inversedBy="Client::idClient")
+     * @ORM\ManyToOne(targetEntity="Client",inversedBy="Reservation")
      * @ORM\JoinColumn(name="Client",referencedColumnName="idClient")
      */
     private  $Client ;
 
     /**
      * 
-     * @ORM\ManyToOne(targetEntity="Voyage",inversedBy="Voyage::idVoyage")
+     * @ORM\ManyToOne(targetEntity="Voyage",inversedBy="Reservation")
      * @ORM\JoinColumn(name="Voyage",referencedColumnName="idVoyage")
      */
     private $Voyage ;
@@ -52,7 +51,7 @@ class Reservation
         return $this->dateReservation;
     }
 
-    public function setDateReservation(\DateTimeInterface $dateReservation): self
+    public function setDateReservation(?\DateTimeInterface $dateReservation): self
     {
         $this->dateReservation = $dateReservation;
 
@@ -76,7 +75,7 @@ class Reservation
        return  $this->Client  ;
     }
 
-    public function setClient( Client $Client)
+    public function setClient( ?Client $Client)
     {
        $this->Client= $Client ;
     }
@@ -85,7 +84,7 @@ class Reservation
       return $this->Voyage; 
     }
 
-    public function setVoyage(Voyage $voyage)
+    public function setVoyage(?Voyage $voyage)
     {
          $this->Voyage= $voyage ;
     }

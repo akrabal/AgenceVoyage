@@ -13,9 +13,9 @@ class Gare
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", name="idGare")
      */
-    private $idGare;
+    private $idGare ;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -52,7 +52,7 @@ class Gare
       return  $this->Ville;
     }
 
-    public function setVille(ville $ville)
+    public function setVille(?ville $ville)
     {
        $this->Ville= $ville;
     }

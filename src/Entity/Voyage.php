@@ -3,19 +3,22 @@
 namespace App\Entity;
 
 use App\Repository\VoyageRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=VoyageRepository::class)
  */
 class Voyage
-{
+{   
+   public function __construct()
+   {
+     $this->Reservation = new ArrayCollection() ;
+   }
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     * @ORM\OneToMany(targetEntity="Reservation",mappedBy="Voyage")
-
+     * @ORM\Column(type="integer",name="idVoyage")
      */
     private $idVoyage;
 
@@ -36,7 +39,7 @@ class Voyage
     
     /**
      * 
-     * @ORM\ManyToOne(targetEntity="Compagnie",inversedBy="idCompagnie")
+     * @ORM\ManyToOne(targetEntity="Compagnie",inversedBy="voyage")
      * @ORM\JoinColumn(name="Compagnie",referencedColumnName="idCompagnie")
      */
     private $Compagnie ;
@@ -54,6 +57,43 @@ class Voyage
      * @ORM\JoinColumn(name="GareArriver",referencedColumnName="idGare")
      */
     private $GareArriver ;
+    /**
+     * * @ORM\OneToMany(targetEntity="Reservation",mappedBy="Voyage")
+     */
+    private $Reservation ;
+
+
+     public  function getReservation():?ArrayCollection
+     {
+         return $this->Reservation;
+     }
+
+     public function setReservation(?Reservation $Reservation)
+     {
+         $this->Reservation= $Reservation;
+     }
+
+     
+      public function addReservation(Reservation $Reservation): self
+      {
+            if (!$this->Reservations->contains($Reservation)) {
+                $this->Reservations[] = $Reservation;
+                $Reservation->setVoyage($this);
+      }
+        return $this;
+     }
+      
+     public function removeReservation(Reservation $Reservation): self
+    {
+        if ($this->reservations->removeElement($Reservation)) {
+            // set the owning side to null (unless already changed)
+            if ($Reservation->getVoyage() === $this) {
+                $Reservation->setVoyage(null);
+            }
+        }
+
+        return $this;
+    }
     
 
 
@@ -117,7 +157,15 @@ class Voyage
     {
       $this->GareArriver=$GareArriver;
     }
-   
+
+    public function getCompagnie():?Compagnie
+    {
+      return $this->Compagnie;
+    }
+    public function setCompagnie(?compagnie $compagnie)
+    {
+      $this->Compagnie = $compagnie;
+    }
 
     
 }
