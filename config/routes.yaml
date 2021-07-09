@@ -1,3 +1,20 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+
+Home:
+  path : /
+  controller : App\Controller\HomeController::index
+
+Reservation:
+   path: /Reservation
+   controller: App\Controller\ReservationController::index
+
+inscription:
+  path: /inscription
+  controller: App\Controller\InscriptionController::index   
+
+
+login:
+  path: /login 
+  controller: App\Controller\SecurityController::login 
