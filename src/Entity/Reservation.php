@@ -24,10 +24,10 @@ class Reservation
     private $dateReservation;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Client",inversedBy="Reservation")
-     * @ORM\JoinColumn(name="Client",referencedColumnName="idClient")
+     * @ORM\ManyToOne(targetEntity="User",inversedBy="Reservation")
+     * @ORM\JoinColumn(name="User",referencedColumnName="id")
      */
-    private  $Client ;
+    private  $User ;
 
     /**
      * 
@@ -70,14 +70,14 @@ class Reservation
         return $this;
     }
 
-    public function getClient():?Client
+    public function getUser():?User
     {
-       return  $this->Client  ;
+       return  $this->User  ;
     }
 
-    public function setClient( ?Client $Client)
+    public function setUser( ?User $User)
     {
-       $this->Client= $Client ;
+       $this->User= $User ;
     }
     public function getVoyage() :?Voyage
     {

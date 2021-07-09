@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -11,13 +12,59 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
-{
+{   
+    public function __construct()
+    {
+        $this->Reservation= new ArrayCollection();
+    }
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    
+     /**
+      * @ORM\OneToMany(targetEntity="Reservation",mappedBy="User") 
+      */
+      private $Reservation ;
+     
+
+      public  function getReservation():?ArrayCollection
+      {
+          return $this->Reservation;
+      }
+ 
+      public function setReservation(?Reservation $Reservation)
+      {
+          $this->Reservation= $Reservation;
+      }
+ 
+      
+       public function addReservations(Reservation $Reservation): self
+       {
+             if (!$this->Reservations->contains($Reservation)) {
+                 $this->Reservations[] = $Reservation;
+                 $Reservation->setUser($this);
+       }
+         return $this;
+      }
+       
+      public function removeReservation(Reservation $Reservation): self
+     {
+         if ($this->reservations->removeElement($Reservation)) {
+             // set the owning side to null (unless already changed)
+             if ($Reservation->getUser() === $this) {
+                 $Reservation->setUser(null);
+             }
+         }
+ 
+         return $this;
+     }
+      
+ 
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
@@ -34,6 +81,79 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string")
      */
     private $password;
+
+     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $NomUser;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $AdresseMailUser;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $NumeroUser;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $AdressePhysiqueUser;
+
+    
+
+
+    public function getNomUser(): ?string
+    {
+        return $this->NomUser;
+    }
+
+    public function setNomUser(string $NomUser): self
+    {
+        $this->NomUser = $NomUser;
+
+        return $this;
+    }
+
+
+    public function getAdresseMailUser(): ?string
+    {
+        return $this->AdresseMailUser;
+    }
+
+    public function setAdresseMailUser(string $AdresseMailUser): self
+    {
+        $this->AdresseMailUser = $AdresseMailUser;
+
+        return $this;
+    }
+
+    public function getNumeroUser(): ?string
+    {
+        return $this->NumeroUser;
+    }
+
+    public function setNumeroUser(string $NumeroUser): self
+    {
+        $this->NumeroUser = $NumeroUser;
+
+        return $this;
+    }
+
+    public function getAdressePhysiqueUser(): ?string
+    {
+        return $this->AdressePhysiqueUser;
+    }
+
+    public function setAdressePhysiqueUser(string $AdressePhysiqueUser): self
+    {
+        $this->AdressePhysiqueUser = $AdressePhysiqueUser;
+
+        return $this;
+    }
+
 
     public function getId(): ?int
     {
