@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -68,6 +69,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\NotBlank
+     * @Assert\Length(min=5,max=50, minMessage="votre prenom doit depasser 5",maxMessage="votre prenom doit etre inferieur a 50")
      */
     private $username;
 
@@ -79,26 +82,39 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\NotBlank
+     * @Assert\Length(min=6,max=50, minMessage="votre mot de passe doit depasser 6 chiffre ",maxMessage="votre mot de passe ne doit pas depasser 50")
+     * 
      */
     private $password;
 
      /**
      * @ORM\Column(type="string", length=255)
+     * 
      */
     private $NomUser;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Email(message = "l'email '{{ value }}' n'est pas valide .")
+     * @Assert\NotBlank()
      */
     private $AdresseMailUser;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Regex(
+     * pattern="/[a-z]+/i",
+     * match=false,message="votre numero de telephone ne peut contenir des caracteres alphabetiques ")
+     * @Assert\Length(min=8,max=12, minMessage="numero de telephone invalid",maxMessage="numero de telephone invalid")
      */
     private $NumeroUser;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Regex(pattern="/\d+/",match=false,message="adresse ne peux contenir des chiffres")
+     * @Assert\NotBlank
      */
     private $AdressePhysiqueUser;
 

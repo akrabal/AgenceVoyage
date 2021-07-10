@@ -12,8 +12,9 @@ class ReservationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-           
-            ->add('Client')
+            ->add('dateReservation')
+            ->add('StatutReservation')
+            ->add('User')
             ->add('Voyage')
         ;
     }
