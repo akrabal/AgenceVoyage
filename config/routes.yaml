@@ -10,6 +10,8 @@ Reservation:
    path: /Reservation
    controller: App\Controller\ReservationController::index
 
+
+
 inscription:
   path: /inscription
   controller: App\Controller\InscriptionController::index   
@@ -19,5 +21,9 @@ login:
   path: /login 
   controller: App\Controller\SecurityController::login 
 
+app_logout:
+  path: /logout
+  methods: GET 
 
-  
+
+

@@ -2,7 +2,7 @@
 security:
     password_hashers:
         App\Entity\User:
-            algorithm: Bcrypt
+            algorithm: auto
             cost: 12
 
     # https://symfony.com/doc/current/security/experimental_authenticators.html
@@ -21,8 +21,10 @@ security:
         main:
             lazy: true
             provider: app_user_provider
-        
-      
+            
+            logout:
+                path: app_logout
+                target: /
 
             form_login:
                 login_path: login

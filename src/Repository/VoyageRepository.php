@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Voyage;
+use App\Entity\voyagerecherche;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -17,6 +18,32 @@ class VoyageRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Voyage::class);
+    }
+
+    public function  findVoyage ( ?voyagerecherche $voyagerecherche )
+    {
+        $query = $this->createQueryBuilder('v')
+         ->join('v.Compagnie','c')
+        ->andWhere('v.statutVoyage = :val')
+        ->setParameter('val', 'actif')
+        ->orderBy('v.idVoyage', 'ASC')
+        ;
+        
+        if ($voyagerecherche->getNonCompagnie())
+         {
+           $query= $query->andWhere('c.NomCompagnie = :NonCompagnie');
+                   $query->setParameter('NonCompagnie', $voyagerecherche->getNonCompagnie()) ;
+         }
+
+         if ($voyagerecherche->getDateDepart())
+         {
+           $query= $query->andWhere('v.HeureDepart = :datedepart')
+                   ->setParameter('datedepart', $voyagerecherche->getDateDepart()) ;
+         }
+
+        return $query->getQuery()
+         ->getResult();
+
     }
 
     // /**

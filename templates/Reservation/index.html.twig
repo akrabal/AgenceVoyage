@@ -4,7 +4,48 @@
 {% block body %}
 <h1> bien reservation</h1>
 <div class="" >
+
+    <p>
+     <div>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+     </div>
+  </p>
+     
   
+  <p>
+     <ul>
+      <table>
+       <th>itineraire</th> <th>compagnie</th> <th>heure de depart</th>
+
+       
+       {% for voyage in voyages %}
+        <tr>
+            <td>
+            depart: <strong>{{voyage.garedepart.ville.NomVille}}</strong> ||||||  arriver: <strong>{{voyage.garearriver.ville.NomVille}}</strong> 
+             </td> 
+             <td>{{voyage.Compagnie.NomCompagnie}}</td> 
+             <td> heure (j'ai pas encore fait datetime me fais chier)</td>
+             <td><a href="{{ path('Reserver',{id:voyage.id})  }} "><button>reserver</button></a></td>
+
+        </tr> 
+        {% endfor %}  
+      
+
+      </table>
+       
+       
+     </ul>
+  </p>
+
+
+  
+    
+     
+ 
+        
+
 </div>
       
 {% endblock %}

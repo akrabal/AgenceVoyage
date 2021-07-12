@@ -16,9 +16,17 @@
     <body>
         <nav>
             <a href="{{path("Home")}}"> acceuille </a>
-            <a href="{{path("Reservation")}}">reservation</a>
-            <a href="{{path("inscription")}}">inscription</a>
-            <a href="{{path("login")}}">login</a>
+           
+            {% if app.user %}
+                 <a href="{{path("Reservation")}}">reservation</a>
+                 <a href="{{path("app_logout")}}">deconexion</a>
+            {% else %}
+                  <a href="{{path("login")}}">login</a>
+                  <a href="{{path("inscription")}}">inscription</a>
+            {% endif %}
+           
+            
+            
         </nav>
         {% block body %}{% endblock %}
     </body>
