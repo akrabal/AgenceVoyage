@@ -113,6 +113,11 @@ class Voyage
 
         return $this;
     }
+    public function getHeuredepartstr(): ?string
+    {   dump( date_format($this->HeureDepart,'Y-m-d '));
+        return date_format($this->HeureDepart,'Y-m-d');
+        
+    }
 
     public function getHeureArrive(): ?\DateTimeInterface
     {

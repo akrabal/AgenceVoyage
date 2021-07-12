@@ -17,15 +17,14 @@ class ReservationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('dateReservation',DateType::class,[
-                'widget' => 'single_text',
-                 'input'=> 'datetime', 
-                 'label'=> 'votre date de depart',
-                 'required' =>'false',
-                 'view_timezone' => 'GMT',
-                  
-            ])
+          
             ->add('StatutReservation')
+            ->add('voyage',EntityType::class, [
+                'class'=> voyage::class,
+                'choice_label' => 'compagnie.NomCompagnie',
+                
+
+            ])
             ->add('envoyer',SubmitType::class,[
                 'label'=>'confirmer'
             ])

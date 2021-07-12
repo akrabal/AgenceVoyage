@@ -1,4 +1,14 @@
 {% extends "base.html.twig" %}
 {% block body %}
     cool !!! vous avez reserver
+   <p>
+    <label for=""> Votre compagnie </label>  <input type="text" name="" id="" value="{{voyage.compagnie.Nomcompagnie}}">  <br>
+    <label for=""> gare de depart </label>  <input type="text" name="" id="" value="{{voyage.GareDepart.ville.NomVille}}">  <br>
+    <label for=""> gare d'arriver </label>  <input type="text" name="" id="" value="{{voyage.GareArriver.ville.NomVille}} ">  <br>
+    <label for=""> date de depart</label> <input type="date" name="" id="" value="{{voyage.Heuredepartstr}}">
+    <a href="{{ path('Confirm',{id:voyage.id})  }} "><button>confirmer</button></a>
+
+    
+
+   </p>
 {% endblock %}

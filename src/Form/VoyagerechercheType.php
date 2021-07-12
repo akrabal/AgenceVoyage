@@ -31,7 +31,7 @@ class VoyagerechercheType extends AbstractType
             ])
             ->add('DateDepart',DateType::class,[
                 'widget' => 'single_text',
-                 'input'=> 'datetime', 
+                 'input'=> 'datetime_immutable', 
                  'label'=> 'votre date de depart',
                  'required' =>'false',
                  'view_timezone' => 'GMT',
